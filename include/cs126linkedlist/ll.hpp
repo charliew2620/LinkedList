@@ -28,7 +28,10 @@ LinkedList<ElementType>::LinkedList(LinkedList<ElementType>&& source) noexcept {
 
 // Destructor
 template <typename ElementType>
-LinkedList<ElementType>::~LinkedList() {}
+LinkedList<ElementType>::~LinkedList() {
+    head = NULL;
+    tail = NULL;
+}
 
 // Copy assignment operator
 template <typename ElementType>

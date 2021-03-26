@@ -21,7 +21,14 @@ class LinkedList {
   // is private.
 
   // Here is a struct to get you started. You'll probably need more than this.
-  struct Node { };
+  struct Node {
+      ElementType data;
+      Node *next;
+
+  };
+
+  Node *head;
+  Node *tail;
 
 
 
