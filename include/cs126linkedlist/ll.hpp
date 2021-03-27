@@ -183,7 +183,7 @@ template <typename ElementType>
 typename LinkedList<ElementType>::const_iterator&
 LinkedList<ElementType>::const_iterator::operator++() {
     this->current_ = this->current_->next;
-    return *this->current_;
+    return *this;
 }
 
 template <typename ElementType>
