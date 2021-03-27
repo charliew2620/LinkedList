@@ -17,7 +17,7 @@ LinkedList<ElementType>::LinkedList() {
 
 template <typename ElementType>
 LinkedList<ElementType>::LinkedList(const std::vector<ElementType>& values) {
-    for (int i = 0; i < values.size(); i++) {
+    for (size_t i = 0; i < values.size(); i++) {
         this->push_back(values[i]);
     }
 }
@@ -25,8 +25,9 @@ LinkedList<ElementType>::LinkedList(const std::vector<ElementType>& values) {
 // Copy constructor
 template <typename ElementType>
 LinkedList<ElementType>::LinkedList(const LinkedList<ElementType>& source) {
-    for (size_t i = 0; i < source.size(); i++) {
-        this->push_back(source[i]);
+    // For loop based on Memory & Iterators slides
+    for (auto i = source.begin(); i != source.end(); i++) {
+        this->push_back(i);
     }
 }
 
@@ -80,7 +81,21 @@ void LinkedList<ElementType>::push_front(const ElementType& value) {
 }
 
 template <typename ElementType>
-void LinkedList<ElementType>::push_back(const ElementType& value) {}
+void LinkedList<ElementType>::push_back(const ElementType& value) {
+    Node *new_node = new Node(value);
+
+    if (head == NULL) {
+        head == value;
+
+    } else {
+        Node *current = head;
+
+        while (current && current->next != NULL) {
+            current = current->next;
+        }
+        current->next = new_node;
+    }
+}
 
 template <typename ElementType>
 ElementType LinkedList<ElementType>::front() const {}
