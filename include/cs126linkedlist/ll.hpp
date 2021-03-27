@@ -47,15 +47,37 @@ LinkedList<ElementType>::~LinkedList() {
 // Copy assignment operator
 template <typename ElementType>
 LinkedList<ElementType>& LinkedList<ElementType>::operator=(
-    const LinkedList<ElementType>& source) {}
+    const LinkedList<ElementType>& source) {
+    this == NULL;
+    for (size_t i = 0; i < source.size(); i++) {
+        this->push_back(source[i]);
+    }
+    return *this;
+}
 
 // Move assignment operator
 template <typename ElementType>
 LinkedList<ElementType>& LinkedList<ElementType>::operator=(
-    LinkedList<ElementType>&& source) noexcept {}
+    LinkedList<ElementType>&& source) noexcept {
+    // https://docs.microsoft.com/en-us/cpp/cpp/move-constructors-and-move-assignment-operators-cpp?view=msvc-160
+    if (this != source) {
+        delete head;
+        head = source.head;
+        source.head = NULL;
+        return *this;
+    }
+}
 
 template <typename ElementType>
-void LinkedList<ElementType>::push_front(const ElementType& value) {}
+void LinkedList<ElementType>::push_front(const ElementType& value) {
+    if (head == NULL) {
+        head = value;
+
+    } else {
+        value->next = head;
+        head = value;
+    }
+}
 
 template <typename ElementType>
 void LinkedList<ElementType>::push_back(const ElementType& value) {}
