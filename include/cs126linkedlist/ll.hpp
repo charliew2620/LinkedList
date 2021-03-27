@@ -11,14 +11,24 @@
 namespace cs126linkedlist {
 
 template <typename ElementType>
-LinkedList<ElementType>::LinkedList() {}
+LinkedList<ElementType>::LinkedList() {
+    head = NULL;
+}
 
 template <typename ElementType>
-LinkedList<ElementType>::LinkedList(const std::vector<ElementType>& values) {}
+LinkedList<ElementType>::LinkedList(const std::vector<ElementType>& values) {
+    for (int i = 0; i < values.size(); i++) {
+        this->push_back(values[i]);
+    }
+}
 
 // Copy constructor
 template <typename ElementType>
-LinkedList<ElementType>::LinkedList(const LinkedList<ElementType>& source) {}
+LinkedList<ElementType>::LinkedList(const LinkedList<ElementType>& source) {
+    for (size_t i = 0; i < source.size(); i++) {
+        this->push_back(source[i]);
+    }
+}
 
 // Move constructor
 template <typename ElementType>
@@ -29,8 +39,7 @@ LinkedList<ElementType>::LinkedList(LinkedList<ElementType>&& source) noexcept {
 // Destructor
 template <typename ElementType>
 LinkedList<ElementType>::~LinkedList() {
-    head = NULL;
-    tail = NULL;
+    delete head;
 }
 
 // Copy assignment operator
