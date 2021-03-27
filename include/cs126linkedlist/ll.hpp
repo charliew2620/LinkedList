@@ -33,7 +33,9 @@ LinkedList<ElementType>::LinkedList(const LinkedList<ElementType>& source) {
 // Move constructor
 template <typename ElementType>
 LinkedList<ElementType>::LinkedList(LinkedList<ElementType>&& source) noexcept {
-
+    // https://www.educative.io/edpresso/what-is-a-move-constructor-in-cpp
+    this->head = source.head;
+    source.head = NULL;
 }
 
 // Destructor
