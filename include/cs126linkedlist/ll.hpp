@@ -181,14 +181,21 @@ typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {}
 
 template <typename ElementType>
 typename LinkedList<ElementType>::const_iterator&
-LinkedList<ElementType>::const_iterator::operator++() {}
+LinkedList<ElementType>::const_iterator::operator++() {
+    this->current_ = this->current_->next;
+    return *this->current_;
+}
 
 template <typename ElementType>
-const ElementType& LinkedList<ElementType>::const_iterator::operator*() const {}
+const ElementType& LinkedList<ElementType>::const_iterator::operator*() const {
+    return this->current_->data;
+}
 
 template <typename ElementType>
 bool LinkedList<ElementType>::const_iterator::operator!=(
-    const typename LinkedList<ElementType>::const_iterator& other) const {}
+    const typename LinkedList<ElementType>::const_iterator& other) const {
+    return this->current_ != other.current_;
+}
 
 template <typename ElementType>
 typename LinkedList<ElementType>::const_iterator
