@@ -110,10 +110,29 @@ template <typename ElementType>
 void LinkedList<ElementType>::pop_back() {}
 
 template <typename ElementType>
-size_t LinkedList<ElementType>::size() const {}
+size_t LinkedList<ElementType>::size() const {
+    int count = 0;
+
+    if (this->empty()) {
+        return 0;
+
+    } else {
+        for (auto i = this->begin(); i != this->end(); i++) {
+            count++;
+        }
+    }
+    return count;
+}
 
 template <typename ElementType>
-bool LinkedList<ElementType>::empty() const {}
+bool LinkedList<ElementType>::empty() const {
+    if (head != NULL) {
+        return false;
+
+    } else {
+        return true;
+    }
+}
 
 template <typename ElementType>
 void LinkedList<ElementType>::clear() {}
