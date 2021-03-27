@@ -15,6 +15,13 @@ LinkedList<ElementType>::LinkedList() {
     head = NULL;
 }
 
+    template<typename ElementType>
+    LinkedList<ElementType>::Node::Node(ElementType setData) {
+        next = NULL;
+        data = setData;
+    }
+
+
 template <typename ElementType>
 LinkedList<ElementType>::LinkedList(const std::vector<ElementType>& values) {
     for (size_t i = 0; i < values.size(); i++) {
@@ -85,7 +92,7 @@ void LinkedList<ElementType>::push_back(const ElementType& value) {
     Node *new_node = new Node(value);
 
     if (head == NULL) {
-        head == value;
+        head = new_node;
 
     } else {
         Node *current = head;
@@ -111,13 +118,13 @@ void LinkedList<ElementType>::pop_back() {}
 
 template <typename ElementType>
 size_t LinkedList<ElementType>::size() const {
-    int count = 0;
+    size_t count = 0;
 
     if (this->empty()) {
-        return 0;
+        return count;
 
     } else {
-        for (auto i = this->begin(); i != this->end(); i++) {
+        for (auto i = this->begin(); i != this->end(); ++i) {
             count++;
         }
     }
@@ -185,10 +192,22 @@ bool LinkedList<ElementType>::const_iterator::operator!=(
 
 template <typename ElementType>
 typename LinkedList<ElementType>::const_iterator
-LinkedList<ElementType>::begin() const {}
+LinkedList<ElementType>::begin() const {
+    const_iterator start(head);
+    return start;
+}
 
 template <typename ElementType>
 typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::end()
-    const {}
+    const {
+    Node *current = head;
+
+    while (current && current->next != NULL) {
+        current = current->next;
+    }
+    const_iterator end(current);
+    ++end;
+    return end;
+}
 
 }  // namespace cs126linkedlist

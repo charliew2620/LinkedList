@@ -22,6 +22,7 @@ class LinkedList {
 
   // Here is a struct to get you started. You'll probably need more than this.
   struct Node {
+      Node(ElementType setData);
       ElementType data;
       Node *next;
 
@@ -118,8 +119,7 @@ class LinkedList {
 
   // --- End of Container Methods ---
 };
-
-template<typename ElementType>
+    template<typename ElementType>
 std::ostream& operator<<(std::ostream& os, const LinkedList<ElementType>& list);
 
 }  // namespace cs126linkedlist
