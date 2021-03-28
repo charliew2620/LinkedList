@@ -111,10 +111,33 @@ template <typename ElementType>
 ElementType LinkedList<ElementType>::back() const {}
 
 template <typename ElementType>
-void LinkedList<ElementType>::pop_front() {}
+void LinkedList<ElementType>::pop_front() {
+    if (this) {
+        Node *current = head;
+        head = head->next;
+        delete current;
+    }
+}
 
 template <typename ElementType>
-void LinkedList<ElementType>::pop_back() {}
+void LinkedList<ElementType>::pop_back() {
+    if (this) {
+        if(this->size() == 1) {
+            delete head;
+            head = NULL;
+            return;
+        }
+
+        Node *current = head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        // https://codereview.stackexchange.com/questions/46391/singly-linked-list-implementation
+        // head = current;
+        delete current->next;
+        current->next = NULL;
+    }
+}
 
 template <typename ElementType>
 size_t LinkedList<ElementType>::size() const {
@@ -142,7 +165,9 @@ bool LinkedList<ElementType>::empty() const {
 }
 
 template <typename ElementType>
-void LinkedList<ElementType>::clear() {}
+void LinkedList<ElementType>::clear() {
+    this->clear();
+}
 
 template <typename ElementType>
 std::ostream& operator<<(std::ostream& os,
@@ -156,28 +181,51 @@ void LinkedList<ElementType>::RemoveOdd() {}
 
 template <typename ElementType>
 bool LinkedList<ElementType>::operator==(
-    const LinkedList<ElementType>& rhs) const {}
+    const LinkedList<ElementType>& rhs) const {
+    return this == rhs;
+}
 
 template <typename ElementType>
 bool LinkedList<ElementType>::operator!=(
-    const LinkedList<ElementType>& rhs) const {}
+    const LinkedList<ElementType>& rhs) const {
+    return this != rhs;
+}
 
 template <typename ElementType>
 typename LinkedList<ElementType>::iterator& LinkedList<ElementType>::iterator::
-operator++() {}
+operator++() {
+    this->current_ = this->current_->next;
+    return *this;
+}
 
 template <typename ElementType>
-ElementType& LinkedList<ElementType>::iterator::operator*() const {}
+ElementType& LinkedList<ElementType>::iterator::operator*() const {
+    return this->current_->data;
+}
 
 template <typename ElementType>
 bool LinkedList<ElementType>::iterator::operator!=(
-    const typename LinkedList<ElementType>::iterator& other) const {}
+    const typename LinkedList<ElementType>::iterator& other) const {
+    return this->current_ != other.current_;
+}
 
 template <typename ElementType>
-typename LinkedList<ElementType>::iterator LinkedList<ElementType>::begin() {}
+typename LinkedList<ElementType>::iterator LinkedList<ElementType>::begin() {
+    iterator start(head);
+    return start;
+}
 
 template <typename ElementType>
-typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {}
+typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {
+    Node *current = head;
+
+    while (current && current->next != NULL) {
+        current = current->next;
+    }
+    iterator end(current);
+    ++end;
+    return end;
+}
 
 template <typename ElementType>
 typename LinkedList<ElementType>::const_iterator&
