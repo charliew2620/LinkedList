@@ -123,7 +123,7 @@ ElementType LinkedList<ElementType>::back() const {
 
 template <typename ElementType>
 void LinkedList<ElementType>::pop_front() {
-    if (this) {
+    if (!this->empty()) {
         Node *current = head;
         head = head->next;
         delete current;
@@ -132,7 +132,7 @@ void LinkedList<ElementType>::pop_front() {
 
 template <typename ElementType>
 void LinkedList<ElementType>::pop_back() {
-    if (this) {
+    if (!this->empty()) {
         if(this->size() == 1) {
             delete head;
             head = NULL;
@@ -140,11 +140,10 @@ void LinkedList<ElementType>::pop_back() {
         }
 
         Node *current = head;
-        while (current->next != NULL) {
+        // https://www.geeksforgeeks.org/remove-last-node-of-the-linked-list/
+        while (current->next->next != NULL) {
             current = current->next;
         }
-        // https://codereview.stackexchange.com/questions/46391/singly-linked-list-implementation
-        // head = current;
         delete current->next;
         current->next = NULL;
     }
