@@ -185,7 +185,7 @@ void LinkedList<ElementType>::RemoveNth(size_t n) {
         return;
 
     } else {
-        for (int i = 0; i < n -2; i++) {
+        for (int i = 0; i < n - 2; i++) {
             current = current->next;
             Node *current2 = current->next;
             current->next = current2->next;
@@ -196,26 +196,24 @@ void LinkedList<ElementType>::RemoveNth(size_t n) {
 
 template <typename ElementType>
 void LinkedList<ElementType>::RemoveOdd() {
-    if (head == NULL) {
+    if (head == NULL || head->next == NULL) {
         return;
+
     } else {
-        Node *current = head->next;
-        head = head->next;
-        delete current;
+        Node *previous = head;
+        Node *current = previous->next;
+        int count = 1;
+        int length = this->size();
 
-        if (head != NULL) {
-            Node *even = head;
-            Node *odd = head->next;
-
-            while (even != NULL && odd != NULL) {
-                even->next = odd->next;
-                delete odd;
-                even = even->next;
-
-                if (even != NULL) {
-                    odd = even->next;
-                }
+        while (length > 0) {
+            if (count % 2 == 0) {
+                previous->next = current->next;
+                free(current);
+                previous = current->next;
+                current->next = previous->next;
             }
+            count++;
+            length--;
         }
     }
 }
