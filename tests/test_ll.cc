@@ -32,7 +32,7 @@ TEST_CASE("Push Back", "[constructor][push_back][size][empty][front][back]") {
     }
 }
 
-TEST_CASE("Push Front", "[constructor][push_front[size][empty][front][back]") {
+TEST_CASE("Push Front", "[constructor][push_front][size][empty][front][back]") {
     LinkedList<int> list;
 
     REQUIRE(list.size() == 0);
@@ -53,7 +53,7 @@ TEST_CASE("Push Front", "[constructor][push_front[size][empty][front][back]") {
     }
 }
 
-TEST_CASE("Pop Front", "[constructor][pop_front][size][empty][front][back]") {
+TEST_CASE("Pop Front", "[constructor][pop_front][size][empty][front][back][push_back]") {
     LinkedList<int> list;
 
     SECTION("Empty list") {
@@ -92,7 +92,7 @@ TEST_CASE("Pop Front", "[constructor][pop_front][size][empty][front][back]") {
     }
 }
 
-TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back]") {
+TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back][push_back]") {
     LinkedList<int> list;
 
     SECTION("Empty list") {
@@ -130,5 +130,26 @@ TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back]") {
         REQUIRE(list.back() == 4);
     }
 }
+
+TEST_CASE("Clear") {
+    LinkedList<int> list;
+
+    SECTION("Tests empty list")  {
+        list.clear();
+
+        REQUIRE(list.size() == 0);
+    }
+
+    SECTION("Tests non-empty list") {
+        list.push_back(99);
+        list.push_back(4);
+        list.push_back(100);
+
+        list.clear();
+        REQUIRE(list.size() == 0);
+    }
+
+}
+
 
 // TODO(you): Add more tests below.
