@@ -178,6 +178,7 @@ bool LinkedList<ElementType>::empty() const {
 template <typename ElementType>
 void LinkedList<ElementType>::clear() {
     if (this->size() == 1) {
+        delete head;
         head = NULL;
         return;
     }
@@ -195,7 +196,17 @@ void LinkedList<ElementType>::clear() {
 
 template <typename ElementType>
 std::ostream& operator<<(std::ostream& os,
-                         const LinkedList<ElementType>& list) {}
+                         const LinkedList<ElementType>& list) {
+    if (list.empty()) {
+        os << "is null";
+
+    } else {
+        for (auto i = source.begin(); i != source.end(); i++) {
+            os << *i << " || ";
+        }
+    }
+    return os;
+}
 
 template <typename ElementType>
 void LinkedList<ElementType>::RemoveNth(size_t n) {

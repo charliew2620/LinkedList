@@ -11,24 +11,54 @@ using cs126linkedlist::LinkedList;
 // Read more on SECTIONs here:
 // `https://github.com/catchorg/Catch2/tree/master/docs`
 // in the "Test Cases and Sections" file.
-TEST_CASE("Push Back", "[constructor][push_back][size][empty]") {
-  LinkedList<int> list;
+TEST_CASE("Push Back", "[constructor][push_back][size][empty][front][back]") {
+    LinkedList<int> list;
 
-  REQUIRE(list.size() == 0);
-  REQUIRE(list.empty());
+    REQUIRE(list.size() == 0);
+    REQUIRE(list.empty());
 
-  SECTION("Push back one element") {
-    list.push_back(1);
-    REQUIRE(list.size() == 1);
-  }
+    SECTION("Push back one element") {
+        list.push_back(1);
+        REQUIRE(list.size() == 1);
+    }
 
-  SECTION("Push back two elements") {
-    list.push_back(-1);
-    list.push_back(10000);
-    REQUIRE(list.size() == 2);
-  }
+    SECTION("Push back two elements") {
+        list.push_back(-1);
+        list.push_back(10000);
+        REQUIRE(list.size() == 2);
+        REQUIRE(list.front() == -1);
+        REQUIRE(list.back() == 10000);
+    }
 }
 
-TEST_CASE()
+TEST_CASE("Push Front", "[constructor][push_front[size][empty][front][back]") {
+    LinkedList<int> list;
+
+    REQUIRE(list.size() == 0);
+    REQUIRE(list.empty());
+
+    SECTION("Push front one element") {
+        list.push_front(1);
+        REQUIRE(list.size() == 1);
+    }
+
+    SECTION("Push front two elements") {
+        list.push_front(-1);
+        list.push_front(10000);
+        REQUIRE(list.size() == 2);
+        REQUIRE(list.front() == 10000);
+        REQUIRE(list.back() == -1);
+    }
+}
+
+TEST_CASE("Pop Front") {
+    LinkedList<int> list;
+
+    SECTION("Empty list") {
+        list.pop_front();
+        REQUIRE(list.size() == 0);
+    }
+
+}
 
 // TODO(you): Add more tests below.
