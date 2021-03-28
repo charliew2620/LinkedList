@@ -78,12 +78,14 @@ LinkedList<ElementType>& LinkedList<ElementType>::operator=(
 
 template <typename ElementType>
 void LinkedList<ElementType>::push_front(const ElementType& value) {
+    Node *new_node = new Node(value);
+
     if (head == NULL) {
-        head = value;
+        head = new_node;
 
     } else {
-        value->next = head;
-        head = value;
+        new_node->next = head;
+        head = new_node;
     }
 }
 
@@ -105,10 +107,18 @@ void LinkedList<ElementType>::push_back(const ElementType& value) {
 }
 
 template <typename ElementType>
-ElementType LinkedList<ElementType>::front() const {}
+ElementType LinkedList<ElementType>::front() const {
+    return head->data;
+}
 
 template <typename ElementType>
-ElementType LinkedList<ElementType>::back() const {}
+ElementType LinkedList<ElementType>::back() const {
+    Node *current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    return current->data;
+}
 
 template <typename ElementType>
 void LinkedList<ElementType>::pop_front() {
@@ -166,7 +176,20 @@ bool LinkedList<ElementType>::empty() const {
 
 template <typename ElementType>
 void LinkedList<ElementType>::clear() {
-    this->clear();
+    if (this->size() == 1) {
+        head = NULL;
+        return;
+    }
+
+    Node *current = head;
+    Node *temp = NULL;
+
+    while (current != NULL) {
+        temp = current->next;
+        delete current;
+        current = temp;
+    }
+    head = NULL;
 }
 
 template <typename ElementType>
@@ -185,7 +208,7 @@ void LinkedList<ElementType>::RemoveNth(size_t n) {
         return;
 
     } else {
-        for (int i = 0; i < n - 2; i++) {
+        for (int i = 0; i < n - 1; i++) {
             current = current->next;
             Node *current2 = current->next;
             current->next = current2->next;
