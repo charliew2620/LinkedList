@@ -131,12 +131,11 @@ TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back][push_ba
     }
 }
 
-TEST_CASE("Clear") {
+TEST_CASE("Clear", "[clear][push_back][size]") {
     LinkedList<int> list;
 
     SECTION("Tests empty list")  {
         list.clear();
-
         REQUIRE(list.size() == 0);
     }
 
@@ -148,7 +147,53 @@ TEST_CASE("Clear") {
         list.clear();
         REQUIRE(list.size() == 0);
     }
+}
 
+TEST_CASE("RemoveOdd", "[size][RemoveOdd][push_back][front][back]") {
+    LinkedList<int> list;
+
+    SECTION("Tests empty list") {
+        list.RemoveOdd();
+        REQUIRE(list.size() == 0);
+    }
+
+    SECTION("Tests size 1 list") {
+        list.push_back(99);
+        list.RemoveOdd();
+        REQUIRE(list.size() == 1);
+    }
+
+    SECTION("Tests sized 2 list") {
+        list.push_back(5);
+        list.push_back(4);
+
+        list.RemoveOdd();
+        REQUIRE(list.size() == 1);
+        REQUIRE(list.front() == 5);
+    }
+
+    SECTION("Tests odd sized list") {
+        list.push_back(5);
+        list.push_back(4);
+        list.push_back(2);
+
+        list.RemoveOdd();
+        REQUIRE(list.size() == 2);
+        REQUIRE(list.front() == 5);
+        REQUIRE(list.back() == 2);
+    }
+
+    SECTION("Tests even sized list") {
+        list.push_back(6);
+        list.push_back(4);
+        list.push_back(55);
+        list.push_back(99);
+
+        list.RemoveOdd();
+        REQUIRE(list.size() == 2);
+        REQUIRE(list.front() == 6);
+        REQUIRE(list.back() == 55);
+    }
 }
 
 

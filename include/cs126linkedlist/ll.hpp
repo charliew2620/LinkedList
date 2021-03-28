@@ -201,7 +201,7 @@ std::ostream& operator<<(std::ostream& os,
 
     } else {
         for (auto i = source.begin(); i != source.end(); i++) {
-            os << *i << " || ";
+            os << *i << "->";
         }
     }
     return os;
@@ -230,24 +230,23 @@ void LinkedList<ElementType>::RemoveNth(size_t n) {
 
 template <typename ElementType>
 void LinkedList<ElementType>::RemoveOdd() {
-    if (head == NULL || head->next == NULL) {
-        return;
+    // https://www.alphacodingskills.com/ds/notes/linked-list-delete-even-nodes.php
+    if (head != NULL) {
 
-    } else {
-        Node *previous = head;
-        Node *current = previous->next;
-        int count = 1;
-        int length = this->size();
+        Node *even = head;
+        Node *odd = head->next;
 
-        while (length > 0) {
-            if (count % 2 == 0) {
-                previous->next = current->next;
-                free(current);
-                previous = current->next;
-                current->next = previous->next;
+        while (even != NULL && odd != NULL) {
+            even->next = odd->next;
+
+            delete odd;
+            odd = NULL;
+
+            even = even->next;
+
+            if (even != NULL) {
+                odd = even->next;
             }
-            count++;
-            length--;
         }
     }
 }
