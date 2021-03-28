@@ -195,7 +195,30 @@ void LinkedList<ElementType>::RemoveNth(size_t n) {
 }
 
 template <typename ElementType>
-void LinkedList<ElementType>::RemoveOdd() {}
+void LinkedList<ElementType>::RemoveOdd() {
+    if (head == NULL) {
+        return;
+    } else {
+        Node *current = head->next;
+        head = head->next;
+        delete current;
+
+        if (head != NULL) {
+            Node *even = head;
+            Node *odd = head->next;
+
+            while (even != NULL && odd != NULL) {
+                even->next = odd->next;
+                delete odd;
+                even = even->next;
+
+                if (even != NULL) {
+                    odd = even->next;
+                }
+            }
+        }
+    }
+}
 
 template <typename ElementType>
 bool LinkedList<ElementType>::operator==(
