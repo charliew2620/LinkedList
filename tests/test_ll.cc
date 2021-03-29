@@ -237,15 +237,16 @@ TEST_CASE("RemoveOdd", "[size][RemoveOdd][push_back][front][back]") {
     }
 
     SECTION("Tests even sized list") {
-        list.push_back(6);
-        list.push_back(4);
-        list.push_back(55);
-        list.push_back(99);
+        LinkedList<std::string> list2;
+        list2.push_back("aa");
+        list2.push_back("pain");
+        list2.push_back("asdf");
+        list2.push_back("cs126");
 
-        list.RemoveOdd();
-        REQUIRE(list.size() == 2);
-        REQUIRE(list.front() == 6);
-        REQUIRE(list.back() == 55);
+        list2.RemoveOdd();
+        REQUIRE(list2.size() == 2);
+        REQUIRE(list2.front() == "aa");
+        REQUIRE(list2.back() == "asdf");
     }
 }
 
@@ -284,14 +285,15 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
     }
 
     SECTION("Removes last position from list") {
-        list.push_back(6);
-        list.push_back(7);
-        list.push_back(8);
+        LinkedList<char> list2;
+        list2.push_back('a');
+        list2.push_back('b');
+        list2.push_back('z');
 
-        list.RemoveNth(3);
-        REQUIRE(list.size() == 2);
-        REQUIRE(list.front() == 6);
-        REQUIRE(list.back() == 7);
+        list2.RemoveNth(3);
+        REQUIRE(list2.size() == 2);
+        REQUIRE(list2.front() == 'a');
+        REQUIRE(list2.back() == 'b');
     }
 
     SECTION("Passes 0 into RemoveNth parameter") {
@@ -330,16 +332,17 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
     }
 
     SECTION("Removes even node from list") {
-        list.push_back(6);
-        list.push_back(7);
-        list.push_back(8);
-        list.push_back(9);
-        list.push_back(10);
+        LinkedList<float> list2;
+        list2.push_back(6.1f);
+        list2.push_back(7.1f);
+        list2.push_back(8.1f);
+        list2.push_back(9.2f);
+        list2.push_back(10.8f);
 
-        list.RemoveNth(4);
-        REQUIRE(list.size() == 4);
-        REQUIRE(list.front() == 6);
-        REQUIRE(list.back() == 10);
+        list2.RemoveNth(4);
+        REQUIRE(list2.size() == 4);
+        REQUIRE(list2.front() == 6.1f);
+        REQUIRE(list2.back() == 10.8f);
     }
 }
 
@@ -481,21 +484,21 @@ TEST_CASE("begin()", "[begin][push_back]") {
 }
 
 TEST_CASE("Tests creating list from vector", "[push_back][size][begin][end]") {
-    std::vector<int> vector;
+    std::vector<char> vector;
 
     SECTION("Tests empty vector") {
-        LinkedList<int> *list = new LinkedList<int>(vector);
+        LinkedList<char> *list = new LinkedList<char>(vector);
         REQUIRE(list->size() == 0);
     }
 
     SECTION("Tests valid vector") {
-        vector.push_back(1);
-        vector.push_back(2);
-        vector.push_back(1000);
-        vector.push_back(99);
-        vector.push_back(67);
+        vector.push_back('z');
+        vector.push_back('o');
+        vector.push_back('T');
+        vector.push_back('G');
+        vector.push_back('a');
 
-        LinkedList<int> *list = new LinkedList<int>(vector);
+        LinkedList<char> *list = new LinkedList<char>(vector);
         int count = 0;
         for (auto itr = list->begin(); itr != list->end(); ++itr) {
             REQUIRE(*itr == vector[count]);
@@ -505,21 +508,21 @@ TEST_CASE("Tests creating list from vector", "[push_back][size][begin][end]") {
 }
 
 TEST_CASE("Copy Constructor", "[size][push_back]") {
-    LinkedList<int> *list = new LinkedList<int>();
+    LinkedList<double> *list = new LinkedList<double>();
 
     SECTION("Tests pointer empty list") {
-        LinkedList<int> *list1 = new LinkedList<int>(*list);
+        LinkedList<double> *list1 = new LinkedList<double>(*list);
         REQUIRE(list1->size() == 0);
         REQUIRE(*list == *list1);
     }
 
     SECTION("Tests pointer valid list") {
-        list->push_back(6);
-        list->push_back(1);
-        list->push_back(444);
-        list->push_back(53);
+        list->push_back(6.88);
+        list->push_back(1.99);
+        list->push_back(444.2);
+        list->push_back(53.34563465);
 
-        LinkedList<int> *list1 = new LinkedList<int>(*list);
+        LinkedList<double> *list1 = new LinkedList<double>(*list);
         REQUIRE(list1->size() == 4);
         REQUIRE(*list == *list1);
     }

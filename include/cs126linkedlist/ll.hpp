@@ -73,7 +73,6 @@ namespace cs126linkedlist {
         if (this != source) {
             delete head;
             head = source.head;
-            source.head = NULL;
             return *this;
         }
     }
