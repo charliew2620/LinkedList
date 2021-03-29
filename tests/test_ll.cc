@@ -605,13 +605,17 @@ TEST_CASE("iterator operator !=", "[begin][push_back]") {
 TEST_CASE("iterator operator ++", "[begin][push_back]") {
     LinkedList<int> list;
 
-    SECTION("Comparing same values") {
-        list.push_back(-77);
-        list.push_back(100);
-        auto itr = list.begin();
-        ++itr;
-        REQUIRE(!(++list.begin() != itr));
-    }
+    list.push_back(-77);
+    list.push_back(100);
+    auto itr = list.begin();
+    ++itr;
+    REQUIRE(!(++list.begin() != itr));
 }
 
+TEST_CASE("iterator operator *", "[begin][push_back]") {
+    LinkedList<int> list;
 
+    list.push_back(-77);
+    list.push_back(100);
+    REQUIRE(*list.begin() == -77);
+}

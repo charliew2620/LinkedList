@@ -15,13 +15,8 @@ namespace cs126linkedlist {
     template<typename ElementType>
     class LinkedList {
 
-
-
-        // Declare any struct, class, or anything you need to use here, as long as it
-        // is private.
-
-        // Here is a struct to get you started. You'll probably need more than this.
     private:
+        // private Node structure
         struct Node {
             Node(ElementType setData);
 
@@ -33,7 +28,6 @@ namespace cs126linkedlist {
 
         const int magic_one = 1;
 
-        // DO NOT CHANGE THE PUBLIC INTERFACE OF THIS CLASS!
     public:
         // Default Constructor.
         LinkedList();
