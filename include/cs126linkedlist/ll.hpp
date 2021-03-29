@@ -142,7 +142,7 @@ namespace cs126linkedlist {
     template<typename ElementType>
     void LinkedList<ElementType>::pop_back() {
         if (!this->empty()) {
-            if (this->size() == 1) {
+            if (this->size() == magic_one) {
                 delete head;
                 head = NULL;
                 return;
@@ -184,7 +184,7 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     void LinkedList<ElementType>::clear() {
-        if (this->size() == 1) {
+        if (this->size() == magic_one) {
             delete head;
             head = NULL;
             return;
@@ -221,7 +221,7 @@ namespace cs126linkedlist {
         if (n > this->size() || n == 0) {
             return;
 
-        } else if (n == 1) {
+        } else if (n == magic_one) {
             head = current->next;
             delete current;
             current = NULL;

@@ -31,6 +31,8 @@ namespace cs126linkedlist {
 
         Node *head;
 
+        const int magic_one = 1;
+
         // DO NOT CHANGE THE PUBLIC INTERFACE OF THIS CLASS!
     public:
         // Default Constructor.
