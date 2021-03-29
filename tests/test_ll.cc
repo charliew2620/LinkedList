@@ -249,7 +249,7 @@ TEST_CASE("RemoveOdd", "[size][RemoveOdd][push_back][front][back]") {
     }
 }
 
-TEST_CASE("Remove Nth method") {
+TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
     LinkedList<int> list;
 
     SECTION("Test empty list") {
@@ -263,7 +263,7 @@ TEST_CASE("Remove Nth method") {
         REQUIRE(list.size() == 0);
     }
 
-    SECTION("Tests invalid position passed into method", "[push_back][size][front][back][RemoveNth]") {
+    SECTION("Tests too big of a position passed into method") {
         list.push_back(5);
         list.push_back(5);
         list.push_back(5);
@@ -300,6 +300,17 @@ TEST_CASE("Remove Nth method") {
         list.push_back(8);
 
         list.RemoveNth(0);
+        REQUIRE(list.size() == 3);
+        REQUIRE(list.front() == 6);
+        REQUIRE(list.back() == 8);
+    }
+
+    SECTION("Passes negative number into RemoveNth parameter") {
+        list.push_back(6);
+        list.push_back(7);
+        list.push_back(8);
+
+        list.RemoveNth(-8);
         REQUIRE(list.size() == 3);
         REQUIRE(list.front() == 6);
         REQUIRE(list.back() == 8);

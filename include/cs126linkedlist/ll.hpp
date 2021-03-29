@@ -21,7 +21,6 @@ namespace cs126linkedlist {
         data = setData;
     }
 
-
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(const std::vector<ElementType> &values) {
         head = NULL;
@@ -218,7 +217,7 @@ namespace cs126linkedlist {
     template<typename ElementType>
     void LinkedList<ElementType>::RemoveNth(size_t n) {
         Node *current = head;
-        if (n > this->size() || n == 0) {
+        if (n > this->size() || n <= 0) {
             return;
 
         } else if (n == magic_one) {
@@ -231,6 +230,7 @@ namespace cs126linkedlist {
             for (int i = 0; i < n - 2; i++) {
                 current = current->next;
             }
+
             Node *current2 = current->next;
             current->next = current2->next;
 
