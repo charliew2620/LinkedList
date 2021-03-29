@@ -80,16 +80,18 @@ TEST_CASE("Pop Front", "[constructor][pop_front][size][empty][front][back][push_
         REQUIRE(list.front() == 99);
     }
 
-    SECTION("Deletes element of list size 3") {
+    SECTION("Deletes two element of list size 4") {
         list.push_back(99);
         list.push_back(4);
         list.push_back(100);
-        REQUIRE(list.size() == 3);
+        list.push_back(15);
+        REQUIRE(list.size() == 4);
 
         list.pop_front();
+        list.pop_front();
         REQUIRE(list.size() == 2);
-        REQUIRE(list.front() == 4);
-        REQUIRE(list.back() == 100);
+        REQUIRE(list.front() == 100);
+        REQUIRE(list.back() == 15);
     }
 }
 
@@ -119,12 +121,14 @@ TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back][push_ba
         REQUIRE(list.front() == 3);
     }
 
-    SECTION("Deletes element of list size 3") {
+    SECTION("Deletes 2 elements of list size 4") {
         list.push_back(99);
         list.push_back(4);
         list.push_back(100);
-        REQUIRE(list.size() == 3);
+        list.push_back(18);
+        REQUIRE(list.size() == 4);
 
+        list.pop_back();
         list.pop_back();
         REQUIRE(list.size() == 2);
         REQUIRE(list.front() == 99);
@@ -453,6 +457,21 @@ TEST_CASE("operator==", "[push_back]") {
 
         REQUIRE(!(*list3 == *list4));
     }
+}
+
+TEST_CASE("begin()") {
+    LinkedList<int> *list = new LinkedList<int>();
+
+    SECTION("Tests valid begin() method") {
+        list->push_back(5);
+        list->push_back(10);
+
+        REQUIRE(*list->begin() == 5);
+    }
+
+//    SECTION("Tests empty list begin() method") {
+//        REQUIRE(*list->begin() == *list->end());
+//    }
 }
 
 
