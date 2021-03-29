@@ -570,7 +570,7 @@ TEST_CASE("Move Operator", "[size][push_back]") {
     REQUIRE(list3 == list2);
 }
 
-TEST_CASE("operator<<") {
+TEST_CASE("operator<<", "[push_back]") {
     LinkedList<int> *list = new LinkedList<int>();
 
     SECTION("Empty list") {
@@ -583,6 +583,35 @@ TEST_CASE("operator<<") {
         list->push_back(-77);
 
         std::cout << *list << std::endl;
-
     }
 }
+
+TEST_CASE("iterator operator !=", "[begin][push_back]") {
+    LinkedList<int> list;
+
+    SECTION("Comparing same values") {
+        list.push_back(-77);
+        list.push_back(100);
+        REQUIRE(!(list.begin() != list.begin()));
+    }
+
+    SECTION("Comparing different values") {
+        list.push_back(-77);
+        list.push_back(100);
+        REQUIRE(++list.begin() != list.begin());
+    }
+}
+
+TEST_CASE("iterator operator ++", "[begin][push_back]") {
+    LinkedList<int> list;
+
+    SECTION("Comparing same values") {
+        list.push_back(-77);
+        list.push_back(100);
+        auto itr = list.begin();
+        ++itr;
+        REQUIRE(!(++list.begin() != itr));
+    }
+}
+
+
