@@ -33,9 +33,10 @@ namespace cs126linkedlist {
 // Copy constructor
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(const LinkedList <ElementType> &source) {
+        head = NULL;
         // For loop based on Memory & Iterators slides
-        for (auto i = source.begin(); i != source.end(); i++) {
-            this->push_back(i);
+        for (auto i = source.begin(); i != source.end(); ++i) {
+            this->push_back(*i);
         }
     }
 
@@ -59,9 +60,10 @@ namespace cs126linkedlist {
     template<typename ElementType>
     LinkedList <ElementType> &LinkedList<ElementType>::operator=(
             const LinkedList <ElementType> &source) {
-        this == NULL;
-        for (size_t i = 0; i < source.size(); i++) {
-            this->push_back(source[i]);
+        this->clear();
+
+        for (auto i = source.begin(); i != source.end(); ++i) {
+            this->push_back(*i);
         }
         return *this;
     }

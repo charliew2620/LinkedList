@@ -166,7 +166,7 @@ TEST_CASE("Size") {
 TEST_CASE("Clear", "[clear][push_back][size]") {
     LinkedList<int> list;
 
-    SECTION("Tests empty list")  {
+    SECTION("Tests empty list") {
         list.clear();
         REQUIRE(list.size() == 0);
     }
@@ -187,8 +187,7 @@ TEST_CASE("Front and Back methods", "[front][back][push_back]") {
     SECTION("Tests empty list") {
         REQUIRE_THROWS_AS(list.front(), std::exception);
         REQUIRE_THROWS_AS(list.back(), std::exception);
-    }
-    SECTION("Tests front()") {
+    }SECTION("Tests front()") {
         list.push_back(99);
         list.push_back(100);
 
@@ -334,128 +333,128 @@ TEST_CASE("Remove Nth method") {
 }
 
 TEST_CASE("operator!=", "[push_back]") {
-    LinkedList<int> *list = new LinkedList<int>();
-    LinkedList<int> *list2 = new LinkedList<int>();
+    LinkedList<int> list;
+    LinkedList<int> list2;
 
     SECTION("Test empty lists") {
-         REQUIRE((*list != *list2) == false);
+        REQUIRE((list != list2) == false);
     }
 
     SECTION("Tests different size lists") {
-        list->push_back(5);
+        list.push_back(5);
 
-        list2->push_back(5);
-        list2->push_back(10);
-        REQUIRE((*list != *list2));
+        list2.push_back(5);
+        list2.push_back(10);
+        REQUIRE((list != list2));
     }
 
     SECTION("Tests same size lists with different values") {
-        list->push_back(5);
-        list->push_back(7);
+        list.push_back(5);
+        list.push_back(7);
 
-        list2->push_back(5);
-        list2->push_back(10);
-        REQUIRE((*list != *list2));
+        list2.push_back(5);
+        list2.push_back(10);
+        REQUIRE((list != list2));
     }
 
     SECTION("Tests same size lists with same values") {
-        list->push_back(5);
-        list->push_back(10);
-        list->push_back(8);
+        list.push_back(5);
+        list.push_back(10);
+        list.push_back(8);
 
-        list2->push_back(5);
-        list2->push_back(10);
-        list2->push_back(8);
-        REQUIRE(!(*list != *list2));
+        list2.push_back(5);
+        list2.push_back(10);
+        list2.push_back(8);
+        REQUIRE(!(list != list2));
     }
 
     SECTION("Tests same string values") {
-        LinkedList<std::string> *list3 = new LinkedList<std::string>();
-        LinkedList<std::string> *list4 = new LinkedList<std::string>();
+        LinkedList<std::string> list3;
+        LinkedList<std::string> list4;
 
-        list3->push_back("Hello");
-        list3->push_back("World");
+        list3.push_back("Hello");
+        list3.push_back("World");
 
-        list4->push_back("Hello");
-        list4->push_back("World");
+        list4.push_back("Hello");
+        list4.push_back("World");
 
-        REQUIRE(!(*list3 != *list4));
+        REQUIRE(!(list3 != list4));
     }
 
     SECTION("Tests different string values") {
-        LinkedList<std::string> *list3 = new LinkedList<std::string>();
-        LinkedList<std::string> *list4 = new LinkedList<std::string>();
+        LinkedList<std::string> list3;
+        LinkedList<std::string> list4;
 
-        list3->push_back("Hello");
-        list3->push_back("World");
+        list3.push_back("Hello");
+        list3.push_back("World");
 
-        list4->push_back("Bye");
-        list4->push_back("World");
+        list4.push_back("Bye");
+        list4.push_back("World");
 
-        REQUIRE(*list3 != *list4);
+        REQUIRE(list3 != list4);
     }
 }
 
 TEST_CASE("operator==", "[push_back]") {
-    LinkedList<int> *list = new LinkedList<int>();
-    LinkedList<int> *list2 = new LinkedList<int>();
+    LinkedList<int> list;
+    LinkedList<int> list2;
 
     SECTION("Test empty lists") {
-        REQUIRE(*list == *list2);
+        REQUIRE(list == list2);
     }
 
     SECTION("Tests different size lists") {
-        list->push_back(5);
+        list.push_back(5);
 
-        list2->push_back(5);
-        list2->push_back(10);
-        REQUIRE(!(*list == *list2));
+        list2.push_back(5);
+        list2.push_back(10);
+        REQUIRE(!(list == list2));
     }
 
     SECTION("Tests same size lists with different values") {
-        list->push_back(5);
-        list->push_back(7);
+        list.push_back(5);
+        list.push_back(7);
 
-        list2->push_back(5);
-        list2->push_back(10);
-        REQUIRE(!(*list == *list2));
+        list2.push_back(5);
+        list2.push_back(10);
+        REQUIRE(!(list == list2));
     }
 
     SECTION("Tests same size lists with same values") {
-        list->push_back(5);
-        list->push_back(10);
-        list->push_back(8);
+        list.push_back(5);
+        list.push_back(10);
+        list.push_back(8);
 
-        list2->push_back(5);
-        list2->push_back(10);
-        list2->push_back(8);
-        REQUIRE(*list == *list2);
+        list2.push_back(5);
+        list2.push_back(10);
+        list2.push_back(8);
+        REQUIRE(list == list2);
     }
 
     SECTION("Tests same string values") {
-        LinkedList<std::string> *list3 = new LinkedList<std::string>();
-        LinkedList<std::string> *list4 = new LinkedList<std::string>();
+        LinkedList<std::string> list3;
+        LinkedList<std::string> list4;
 
-        list3->push_back("Hello");
-        list3->push_back("World");
+        list3.push_back("Hello");
+        list3.push_back("World");
 
-        list4->push_back("Hello");
-        list4->push_back("World");
+        list4.push_back("Hello");
+        list4.push_back("World");
 
-        REQUIRE(*list3 == *list4);
+        REQUIRE(list3 == list4);
     }
 
     SECTION("Tests different string values") {
-        LinkedList<std::string> *list3 = new LinkedList<std::string>();
-        LinkedList<std::string> *list4 = new LinkedList<std::string>();
+        LinkedList<std::string> list3;
+        LinkedList<std::string> list4;
 
-        list3->push_back("Hello");
-        list3->push_back("World");
+        list3.push_back("Hello");
+        list3.push_back("World");
 
-        list4->push_back("Bye");
-        list4->push_back("World");
+        list4.push_back("Bye");
+        list4.push_back("World");
 
-        REQUIRE(!(*list3 == *list4));
+        REQUIRE(!(list3 == list4));
     }
 }
 
@@ -468,13 +467,9 @@ TEST_CASE("begin()", "[begin][push_back]") {
 
         REQUIRE(*list->begin() == 5);
     }
-
-//    SECTION("Tests empty list begin() method") {
-//        REQUIRE(*list->begin() == *list->end());
-//    }
 }
 
-TEST_CASE("Tests creating list from vector") {
+TEST_CASE("Tests creating list from vector", "[push_back][size][begin][end]") {
     std::vector<int> vector;
 
     SECTION("Tests empty vector") {
@@ -496,7 +491,50 @@ TEST_CASE("Tests creating list from vector") {
             count++;
         }
     }
+}
 
+TEST_CASE("Copy Constructor", "[size][push_back]") {
+    LinkedList<int> *list = new LinkedList<int>();
+
+    SECTION("Tests pointer empty list") {
+        LinkedList<int> *list1 = new LinkedList<int>(*list);
+        REQUIRE(list1->size() == 0);
+        REQUIRE(*list == *list1);
+    }
+
+    SECTION("Tests pointer valid list") {
+        list->push_back(6);
+        list->push_back(1);
+        list->push_back(444);
+        list->push_back(53);
+
+        LinkedList<int> *list1 = new LinkedList<int>(*list);
+        REQUIRE(list1->size() == 4);
+        REQUIRE(*list == *list1);
+    }
+}
+
+TEST_CASE("Copy Assignment Operator") {
+    LinkedList<int> *list2 = new LinkedList<int>();
+
+    SECTION("Tests empty list") {
+        LinkedList<int> list3;
+        list3 = *list2;
+        REQUIRE(list3.size() == 0);
+        REQUIRE(*list2 == list3);
+    }
+
+    SECTION("Tests valid list") {
+        list2->push_back(6);
+        list2->push_back(1);
+        list2->push_back(444);
+        list2->push_back(53);
+
+        LinkedList<int> list3;
+        list3 = *list2;
+        REQUIRE(list3.size() == 4);
+        REQUIRE(*list2 == list3);
+    }
 }
 
 
