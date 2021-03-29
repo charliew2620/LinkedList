@@ -132,7 +132,7 @@ TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back][push_ba
     }
 }
 
-TEST_CASE("Empty") {
+TEST_CASE("Empty", "[push_back][empty]") {
     LinkedList<int> list;
 
     SECTION("Empty list") {
@@ -142,6 +142,20 @@ TEST_CASE("Empty") {
     SECTION("Not empty list") {
         list.push_back(99);
         REQUIRE(list.empty() == false);
+    }
+}
+
+TEST_CASE("Size") {
+    LinkedList<int> list;
+
+    SECTION("Empty list") {
+        REQUIRE(list.size() == 0);
+    }
+
+    SECTION("Not empty list") {
+        list.push_back(99);
+        list.push_back(99);
+        REQUIRE(list.size() == 2);
     }
 }
 
@@ -160,6 +174,28 @@ TEST_CASE("Clear", "[clear][push_back][size]") {
 
         list.clear();
         REQUIRE(list.size() == 0);
+    }
+}
+
+TEST_CASE("Front and Back methods") {
+    LinkedList<int> list;
+
+    SECTION("Tests empty list") {
+        REQUIRE_THROWS_AS(list.front(), std::exception);
+        REQUIRE_THROWS_AS(list.back(), std::exception);
+    }
+    SECTION("Tests front()") {
+        list.push_back(99);
+        list.push_back(100);
+
+        REQUIRE(list.front() == 99);
+    }
+
+    SECTION("Tests back()") {
+        list.push_back(99);
+        list.push_back(100);
+
+        REQUIRE(list.back() == 100);
     }
 }
 
