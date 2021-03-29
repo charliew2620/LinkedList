@@ -210,7 +210,7 @@ std::ostream& operator<<(std::ostream& os,
 template <typename ElementType>
 void LinkedList<ElementType>::RemoveNth(size_t n) {
     Node *current = head;
-    if (n > this->size()) {
+    if (n > this->size() || n == 0) {
         return;
 
     } else if (n == 1) {
@@ -219,12 +219,13 @@ void LinkedList<ElementType>::RemoveNth(size_t n) {
         return;
 
     } else {
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 2; i++) {
             current = current->next;
-            Node *current2 = current->next;
-            current->next = current2->next;
-            delete current2;
         }
+        Node *current2 = current->next;
+        current->next = current2->next;
+
+        delete current2;
     }
 }
 

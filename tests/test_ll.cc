@@ -196,5 +196,88 @@ TEST_CASE("RemoveOdd", "[size][RemoveOdd][push_back][front][back]") {
     }
 }
 
+TEST_CASE("Remove Nth method") {
+    LinkedList<int> list;
+
+    SECTION("Test empty list") {
+        list.RemoveNth(4);
+        REQUIRE(list.size() == 0);
+    }
+
+    SECTION("Tests list of size 1") {
+        list.push_back(5);
+        list.RemoveNth(1);
+        REQUIRE(list.size() == 0);
+    }
+
+    SECTION("Tests invalid position passed into method") {
+        list.push_back(5);
+        list.push_back(5);
+        list.push_back(5);
+
+        list.RemoveNth(4);
+        REQUIRE(list.size() == 3);
+    }
+
+    SECTION("Removes 1st position from list") {
+        list.push_back(6);
+        list.push_back(7);
+        list.push_back(8);
+
+        list.RemoveNth(1);
+        REQUIRE(list.size() == 2);
+        REQUIRE(list.front() == 7);
+        REQUIRE(list.back() == 8);
+    }
+
+    SECTION("Removes last position from list") {
+        list.push_back(6);
+        list.push_back(7);
+        list.push_back(8);
+
+        list.RemoveNth(3);
+        REQUIRE(list.size() == 2);
+        REQUIRE(list.front() == 6);
+        REQUIRE(list.back() == 7);
+    }
+
+    SECTION("Passes 0 into RemoveNth parameter") {
+        list.push_back(6);
+        list.push_back(7);
+        list.push_back(8);
+
+        list.RemoveNth(0);
+        REQUIRE(list.size() == 3);
+        REQUIRE(list.front() == 6);
+        REQUIRE(list.back() == 8);
+    }
+
+    SECTION("Removes odd node from list") {
+        list.push_back(6);
+        list.push_back(7);
+        list.push_back(8);
+        list.push_back(9);
+        list.push_back(10);
+
+        list.RemoveNth(3);
+        REQUIRE(list.size() == 4);
+        REQUIRE(list.front() == 6);
+        REQUIRE(list.back() == 10);
+    }
+
+    SECTION("Removes even node from list") {
+        list.push_back(6);
+        list.push_back(7);
+        list.push_back(8);
+        list.push_back(9);
+        list.push_back(10);
+
+        list.RemoveNth(4);
+        REQUIRE(list.size() == 4);
+        REQUIRE(list.front() == 6);
+        REQUIRE(list.back() == 10);
+    }
+}
+
 
 // TODO(you): Add more tests below.
