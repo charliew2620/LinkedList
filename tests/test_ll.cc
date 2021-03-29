@@ -459,7 +459,7 @@ TEST_CASE("operator==", "[push_back]") {
     }
 }
 
-TEST_CASE("begin()") {
+TEST_CASE("begin()", "[begin][push_back]") {
     LinkedList<int> *list = new LinkedList<int>();
 
     SECTION("Tests valid begin() method") {
@@ -472,6 +472,31 @@ TEST_CASE("begin()") {
 //    SECTION("Tests empty list begin() method") {
 //        REQUIRE(*list->begin() == *list->end());
 //    }
+}
+
+TEST_CASE("Tests creating list from vector") {
+    std::vector<int> vector;
+
+    SECTION("Tests empty vector") {
+        LinkedList<int> *list = new LinkedList<int>(vector);
+        REQUIRE(list->size() == 0);
+    }
+
+    SECTION("Tests valid vector") {
+        vector.push_back(1);
+        vector.push_back(2);
+        vector.push_back(1000);
+        vector.push_back(99);
+        vector.push_back(67);
+
+        LinkedList<int> *list = new LinkedList<int>(vector);
+        int count = 0;
+        for (auto i = list->begin(); i != list->end(); ++i) {
+            REQUIRE(*i == vector[count]);
+            count++;
+        }
+    }
+
 }
 
 

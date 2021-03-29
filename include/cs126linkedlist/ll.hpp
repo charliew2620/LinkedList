@@ -24,6 +24,7 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(const std::vector<ElementType> &values) {
+        head = NULL;
         for (size_t i = 0; i < values.size(); i++) {
             this->push_back(values[i]);
         }
@@ -51,6 +52,7 @@ namespace cs126linkedlist {
     LinkedList<ElementType>::~LinkedList() {
         this->clear();
         delete head;
+        head = NULL;
     }
 
 // Copy assignment operator
@@ -68,7 +70,6 @@ namespace cs126linkedlist {
     template<typename ElementType>
     LinkedList <ElementType> &LinkedList<ElementType>::operator=(
             LinkedList <ElementType> &&source) noexcept {
-        // https://docs.microsoft.com/en-us/cpp/cpp/move-constructors-and-move-assignment-operators-cpp?view=msvc-160
         if (this != source) {
             delete head;
             head = source.head;
