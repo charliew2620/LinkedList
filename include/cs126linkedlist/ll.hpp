@@ -204,11 +204,11 @@ namespace cs126linkedlist {
     std::ostream &operator<<(std::ostream &os,
                              const LinkedList <ElementType> &list) {
         if (list.empty()) {
-            os << "is null";
+            os << "null";
 
         } else {
             for (auto itr = list.begin(); itr != list.end(); ++itr) {
-                os << *itr << "->";
+                os << *itr << ", ";
             }
         }
         return os;

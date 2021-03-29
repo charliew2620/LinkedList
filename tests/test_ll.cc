@@ -569,3 +569,20 @@ TEST_CASE("Move Operator", "[size][push_back]") {
     REQUIRE(list3.size() == 3);
     REQUIRE(list3 == list2);
 }
+
+TEST_CASE("operator<<") {
+    LinkedList<int> *list = new LinkedList<int>();
+
+    SECTION("Empty list") {
+        std::cout << *list << std::endl;
+    }
+
+    SECTION("Valid list") {
+        list->push_back(234);
+        list->push_back(111);
+        list->push_back(-77);
+
+        std::cout << *list << std::endl;
+
+    }
+}
