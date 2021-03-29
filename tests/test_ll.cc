@@ -514,7 +514,7 @@ TEST_CASE("Copy Constructor", "[size][push_back]") {
     }
 }
 
-TEST_CASE("Copy Assignment Operator") {
+TEST_CASE("Copy Assignment Operator", "[size][push_back]") {
     LinkedList<int> *list2 = new LinkedList<int>();
 
     SECTION("Tests empty list") {
@@ -535,6 +535,22 @@ TEST_CASE("Copy Assignment Operator") {
         REQUIRE(list3.size() == 4);
         REQUIRE(*list2 == list3);
     }
+}
+
+TEST_CASE("Move Constructor") {
+    LinkedList<int> *list = new LinkedList<int>();
+
+    list->push_back(177);
+    list->push_back(11);
+    list->push_back(15);
+
+    LinkedList<int> *list2 = new LinkedList<int>(*list);
+
+    LinkedList<int> *list3 = new LinkedList<int>(std::move(*list));
+
+    REQUIRE(list->size() == 0);
+    REQUIRE(list3->size() == 3);
+    REQUIRE(*list3 == *list2);
 }
 
 
