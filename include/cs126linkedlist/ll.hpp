@@ -262,7 +262,7 @@ namespace cs126linkedlist {
     bool LinkedList<ElementType>::operator==(
             const LinkedList <ElementType> &rhs) const {
         if (this->size() != rhs.size()) {
-            return true;
+            return false;
         }
 
         const_iterator iterator = rhs.begin();

@@ -329,7 +329,7 @@ TEST_CASE("Remove Nth method") {
     }
 }
 
-TEST_CASE("operator!=") {
+TEST_CASE("operator!=", "[push_back]") {
     LinkedList<int> *list = new LinkedList<int>();
     LinkedList<int> *list2 = new LinkedList<int>();
 
@@ -391,6 +391,70 @@ TEST_CASE("operator!=") {
         REQUIRE(*list3 != *list4);
     }
 }
+
+TEST_CASE("operator==", "[push_back]") {
+    LinkedList<int> *list = new LinkedList<int>();
+    LinkedList<int> *list2 = new LinkedList<int>();
+
+    SECTION("Test empty lists") {
+        REQUIRE(*list == *list2);
+    }
+
+    SECTION("Tests different size lists") {
+        list->push_back(5);
+
+        list2->push_back(5);
+        list2->push_back(10);
+        REQUIRE(!(*list == *list2));
+    }
+
+    SECTION("Tests same size lists with different values") {
+        list->push_back(5);
+        list->push_back(7);
+
+        list2->push_back(5);
+        list2->push_back(10);
+        REQUIRE(!(*list == *list2));
+    }
+
+    SECTION("Tests same size lists with same values") {
+        list->push_back(5);
+        list->push_back(10);
+        list->push_back(8);
+
+        list2->push_back(5);
+        list2->push_back(10);
+        list2->push_back(8);
+        REQUIRE(*list == *list2);
+    }
+
+    SECTION("Tests same string values") {
+        LinkedList<std::string> *list3 = new LinkedList<std::string>();
+        LinkedList<std::string> *list4 = new LinkedList<std::string>();
+
+        list3->push_back("Hello");
+        list3->push_back("World");
+
+        list4->push_back("Hello");
+        list4->push_back("World");
+
+        REQUIRE(*list3 == *list4);
+    }
+
+    SECTION("Tests different string values") {
+        LinkedList<std::string> *list3 = new LinkedList<std::string>();
+        LinkedList<std::string> *list4 = new LinkedList<std::string>();
+
+        list3->push_back("Hello");
+        list3->push_back("World");
+
+        list4->push_back("Bye");
+        list4->push_back("World");
+
+        REQUIRE(!(*list3 == *list4));
+    }
+}
+
 
 
 // TODO(you): Add more tests below.
