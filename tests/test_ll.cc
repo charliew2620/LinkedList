@@ -486,8 +486,8 @@ TEST_CASE("Tests creating list from vector", "[push_back][size][begin][end]") {
 
         LinkedList<int> *list = new LinkedList<int>(vector);
         int count = 0;
-        for (auto i = list->begin(); i != list->end(); ++i) {
-            REQUIRE(*i == vector[count]);
+        for (auto itr = list->begin(); itr != list->end(); ++itr) {
+            REQUIRE(*itr == vector[count]);
             count++;
         }
     }
@@ -569,7 +569,3 @@ TEST_CASE("Move Operator", "[size][push_back]") {
     REQUIRE(list3.size() == 3);
     REQUIRE(list3 == list2);
 }
-
-
-
-// TODO(you): Add more tests below.

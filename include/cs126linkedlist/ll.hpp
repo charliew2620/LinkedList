@@ -35,15 +35,14 @@ namespace cs126linkedlist {
     LinkedList<ElementType>::LinkedList(const LinkedList <ElementType> &source) {
         head = NULL;
         // For loop based on Memory & Iterators slides
-        for (auto i = source.begin(); i != source.end(); ++i) {
-            this->push_back(*i);
+        for (auto itr = source.begin(); itr != source.end(); ++itr) {
+            this->push_back(*itr);
         }
     }
 
 // Move constructor
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(LinkedList <ElementType> &&source) noexcept {
-        // https://www.educative.io/edpresso/what-is-a-move-constructor-in-cpp
         this->head = source.head;
         source.head = NULL;
     }
@@ -62,8 +61,8 @@ namespace cs126linkedlist {
             const LinkedList <ElementType> &source) {
         this->clear();
 
-        for (auto i = source.begin(); i != source.end(); ++i) {
-            this->push_back(*i);
+        for (auto itr = source.begin(); itr != source.end(); ++itr) {
+            this->push_back(*itr);
         }
         return *this;
     }
@@ -149,7 +148,6 @@ namespace cs126linkedlist {
             }
 
             Node *current = head;
-            // https://www.geeksforgeeks.org/remove-last-node-of-the-linked-list/
             while (current->next->next != NULL) {
                 current = current->next;
             }
@@ -166,7 +164,7 @@ namespace cs126linkedlist {
             return count;
 
         } else {
-            for (auto i = this->begin(); i != this->end(); ++i) {
+            for (auto itr = this->begin(); itr != this->end(); ++itr) {
                 count++;
             }
         }
@@ -209,8 +207,8 @@ namespace cs126linkedlist {
             os << "is null";
 
         } else {
-            for (auto i = list.begin(); i != list.end(); ++i) {
-                os << *i << "->";
+            for (auto itr = list.begin(); itr != list.end(); ++itr) {
+                os << *itr << "->";
             }
         }
         return os;
@@ -240,7 +238,6 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     void LinkedList<ElementType>::RemoveOdd() {
-        // https://www.alphacodingskills.com/ds/notes/linked-list-delete-even-nodes.php
         if (head != NULL) {
 
             Node *even = head;
@@ -269,8 +266,8 @@ namespace cs126linkedlist {
         }
 
         const_iterator iterator = rhs.begin();
-        for (auto i = this->begin(); i != this->end(); ++i) {
-            if (*iterator != *i) {
+        for (auto itr = this->begin(); itr != this->end(); ++itr) {
+            if (*iterator != *itr) {
                 return false;
             }
             ++iterator;
@@ -286,8 +283,8 @@ namespace cs126linkedlist {
         }
 
         const_iterator iterator = rhs.begin();
-        for (auto i = this->begin(); i != this->end(); ++i) {
-            if (*iterator != *i) {
+        for (auto itr = this->begin(); itr != this->end(); ++itr) {
+            if (*iterator != *itr) {
                 return true;
             }
             ++iterator;
