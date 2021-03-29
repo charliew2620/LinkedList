@@ -11,6 +11,7 @@ using cs126linkedlist::LinkedList;
 // Read more on SECTIONs here:
 // `https://github.com/catchorg/Catch2/tree/master/docs`
 // in the "Test Cases and Sections" file.
+
 TEST_CASE("Push Back", "[constructor][push_back][size][empty][front][back]") {
     LinkedList<int> list;
 
@@ -131,6 +132,19 @@ TEST_CASE("Pop Back", "[constructor][pop_back][size][empty][front][back][push_ba
     }
 }
 
+TEST_CASE("Empty") {
+    LinkedList<int> list;
+
+    SECTION("Empty list") {
+        REQUIRE(list.empty() == true);
+    }
+
+    SECTION("Not empty list") {
+        list.push_back(99);
+        REQUIRE(list.empty() == false);
+    }
+}
+
 TEST_CASE("Clear", "[clear][push_back][size]") {
     LinkedList<int> list;
 
@@ -210,7 +224,7 @@ TEST_CASE("Remove Nth method") {
         REQUIRE(list.size() == 0);
     }
 
-    SECTION("Tests invalid position passed into method") {
+    SECTION("Tests invalid position passed into method", "[push_back][size][front][back][RemoveNth]") {
         list.push_back(5);
         list.push_back(5);
         list.push_back(5);
