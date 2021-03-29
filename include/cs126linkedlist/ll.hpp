@@ -206,7 +206,7 @@ namespace cs126linkedlist {
             os << "is null";
 
         } else {
-            for (auto i = source.begin(); i != source.end(); i++) {
+            for (auto i = list.begin(); i != list.end(); ++i) {
                 os << *i << "->";
             }
         }
@@ -261,13 +261,35 @@ namespace cs126linkedlist {
     template<typename ElementType>
     bool LinkedList<ElementType>::operator==(
             const LinkedList <ElementType> &rhs) const {
-        return this == rhs;
+        if (this->size() != rhs.size()) {
+            return true;
+        }
+
+        const_iterator iterator = rhs.begin();
+        for (auto i = this->begin(); i != this->end(); ++i) {
+            if (*iterator != *i) {
+                return false;
+            }
+            ++iterator;
+        }
+        return true;
     }
 
     template<typename ElementType>
     bool LinkedList<ElementType>::operator!=(
             const LinkedList <ElementType> &rhs) const {
-        return this != rhs;
+        if (this->size() != rhs.size()) {
+            return true;
+        }
+
+        const_iterator iterator = rhs.begin();
+        for (auto i = this->begin(); i != this->end(); ++i) {
+            if (*iterator != *i) {
+                return true;
+            }
+            ++iterator;
+        }
+        return false;
     }
 
     template<typename ElementType>
@@ -296,13 +318,7 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {
-        Node *current = head;
-
-        while (current && current->next != NULL) {
-            current = current->next;
-        }
-        iterator end(current);
-        ++end;
+        iterator end(nullptr);
         return end;
     }
 
