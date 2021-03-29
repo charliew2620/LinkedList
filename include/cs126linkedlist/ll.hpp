@@ -135,6 +135,7 @@ namespace cs126linkedlist {
             Node *current = head;
             head = head->next;
             delete current;
+            current = NULL;
         }
     }
 
@@ -223,6 +224,7 @@ namespace cs126linkedlist {
         } else if (n == 1) {
             head = current->next;
             delete current;
+            current = NULL;
             return;
 
         } else {
@@ -233,6 +235,7 @@ namespace cs126linkedlist {
             current->next = current2->next;
 
             delete current2;
+            current2 = NULL;
         }
     }
 
