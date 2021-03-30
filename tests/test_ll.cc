@@ -187,7 +187,9 @@ TEST_CASE("Front and Back methods", "[front][back][push_back]") {
     SECTION("Tests empty list") {
         REQUIRE_THROWS_AS(list.front(), std::exception);
         REQUIRE_THROWS_AS(list.back(), std::exception);
-    }SECTION("Tests front()") {
+    }
+
+    SECTION("Tests front()") {
         list.push_back(99);
         list.push_back(100);
 
@@ -417,6 +419,18 @@ TEST_CASE("operator==", "[push_back]") {
         REQUIRE(list == list2);
     }
 
+    SECTION("Test 1 size lists of same values") {
+        list.push_back(5);
+        list2.push_back(5);
+        REQUIRE(list == list2);
+    }
+
+    SECTION("Test 1 size lists of different values") {
+        list.push_back(5);
+        list2.push_back(6);
+        REQUIRE(list != list2);
+    }
+
     SECTION("Tests different size lists") {
         list.push_back(5);
 
@@ -552,19 +566,34 @@ TEST_CASE("Copy Assignment Operator", "[size][push_back]") {
 }
 
 TEST_CASE("Move Constructor", "[push_back][size]") {
-    LinkedList<int> *list = new LinkedList<int>();
 
-    list->push_back(177);
-    list->push_back(11);
-    list->push_back(15);
+    SECTION("Empty list") {
+        LinkedList<int> *list = new LinkedList<int>();
 
-    LinkedList<int> *list2 = new LinkedList<int>(*list);
+        LinkedList<int> *list2 = new LinkedList<int>(*list);
 
-    LinkedList<int> *list3 = new LinkedList<int>(std::move(*list));
+        LinkedList<int> *list3 = new LinkedList<int>(std::move(*list));
 
-    REQUIRE(list->size() == 0);
-    REQUIRE(list3->size() == 3);
-    REQUIRE(*list3 == *list2);
+        REQUIRE(list->size() == 0);
+        REQUIRE(list3->size() == 0);
+        REQUIRE(*list3 == *list2);
+    }
+
+    SECTION("Tests non-empty list") {
+        LinkedList<int> *list = new LinkedList<int>();
+
+        list->push_back(177);
+        list->push_back(11);
+        list->push_back(15);
+
+        LinkedList<int> *list2 = new LinkedList<int>(*list);
+
+        LinkedList<int> *list3 = new LinkedList<int>(std::move(*list));
+
+        REQUIRE(list->size() == 0);
+        REQUIRE(list3->size() == 3);
+        REQUIRE(*list3 == *list2);
+    }
 }
 
 TEST_CASE("Move Operator", "[size][push_back]") {
