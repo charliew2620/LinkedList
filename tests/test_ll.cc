@@ -255,15 +255,23 @@ TEST_CASE("RemoveOdd", "[size][RemoveOdd][push_back][front][back]") {
 TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
     LinkedList<int> list;
 
-    SECTION("Test empty list") {
-        list.RemoveNth(4);
+    SECTION("Test empty list and pass n as 0") {
+        list.RemoveNth(0);
         REQUIRE(list.size() == 0);
     }
 
     SECTION("Tests list of size 1") {
         list.push_back(5);
-        list.RemoveNth(1);
+        list.RemoveNth(0);
         REQUIRE(list.size() == 0);
+    }
+
+    SECTION("Tests list of size 2") {
+        list.push_back(5);
+        list.push_back(2);
+        list.RemoveNth(1);
+        REQUIRE(list.size() == 1);
+        REQUIRE(list.front() == 5);
     }
 
     SECTION("Tests too big of a position passed into method") {
@@ -271,7 +279,7 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
         list.push_back(5);
         list.push_back(5);
 
-        list.RemoveNth(4);
+        list.RemoveNth(3);
         REQUIRE(list.size() == 3);
     }
 
@@ -280,7 +288,7 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
         list.push_back(7);
         list.push_back(8);
 
-        list.RemoveNth(1);
+        list.RemoveNth(0);
         REQUIRE(list.size() == 2);
         REQUIRE(list.front() == 7);
         REQUIRE(list.back() == 8);
@@ -292,21 +300,10 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
         list2.push_back('b');
         list2.push_back('z');
 
-        list2.RemoveNth(3);
+        list2.RemoveNth(2);
         REQUIRE(list2.size() == 2);
         REQUIRE(list2.front() == 'a');
         REQUIRE(list2.back() == 'b');
-    }
-
-    SECTION("Passes 0 into RemoveNth parameter") {
-        list.push_back(6);
-        list.push_back(7);
-        list.push_back(8);
-
-        list.RemoveNth(0);
-        REQUIRE(list.size() == 3);
-        REQUIRE(list.front() == 6);
-        REQUIRE(list.back() == 8);
     }
 
     SECTION("Passes negative number into RemoveNth parameter") {
@@ -320,7 +317,7 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
         REQUIRE(list.back() == 8);
     }
 
-    SECTION("Removes odd node from list") {
+    SECTION("Removes odd position from list") {
         list.push_back(6);
         list.push_back(7);
         list.push_back(8);
@@ -333,7 +330,7 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
         REQUIRE(list.back() == 10);
     }
 
-    SECTION("Removes even node from list") {
+    SECTION("Removes even position from list") {
         LinkedList<float> list2;
         list2.push_back(6.1f);
         list2.push_back(7.1f);
@@ -341,7 +338,7 @@ TEST_CASE("Remove Nth method", "[push_back][size][front][back][RemoveNth]") {
         list2.push_back(9.2f);
         list2.push_back(10.8f);
 
-        list2.RemoveNth(4);
+        list2.RemoveNth(2);
         REQUIRE(list2.size() == 4);
         REQUIRE(list2.front() == 6.1f);
         REQUIRE(list2.back() == 10.8f);

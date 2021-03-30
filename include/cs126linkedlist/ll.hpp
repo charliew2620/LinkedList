@@ -217,25 +217,22 @@ namespace cs126linkedlist {
     template<typename ElementType>
     void LinkedList<ElementType>::RemoveNth(size_t n) {
         Node *current = head;
-        if (n > this->size() || n <= 0) {
+        if (n >= this->size() || n < 0 || this->empty()) {
             return;
 
-        } else if (n == magic_one) {
+        } else if (n == 0) {
             head = current->next;
             delete current;
             current = NULL;
             return;
 
         } else {
-            for (int i = 0; i < n - 2; i++) {
+            for (int i = 0; i < n - 1; i++) {
                 current = current->next;
             }
-
-            Node *current2 = current->next;
-            current->next = current2->next;
-
-            delete current2;
-            current2 = NULL;
+            Node *current2 = current->next->next;
+            delete current->next;
+            current->next = current2;
         }
     }
 
