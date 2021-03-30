@@ -359,7 +359,7 @@ TEST_CASE("operator!=", "[push_back]") {
 
         list2.push_back(5);
         list2.push_back(10);
-        REQUIRE((list != list2));
+        REQUIRE(list != list2);
     }
 
     SECTION("Tests same size lists with different values") {
@@ -368,7 +368,7 @@ TEST_CASE("operator!=", "[push_back]") {
 
         list2.push_back(5);
         list2.push_back(10);
-        REQUIRE((list != list2));
+        REQUIRE(list != list2);
     }
 
     SECTION("Tests same size lists with same values") {
