@@ -150,15 +150,15 @@ TEST_CASE("Empty", "[push_back][empty]") {
 }
 
 TEST_CASE("Size") {
-    LinkedList<int> list;
+    LinkedList<char> list;
 
     SECTION("Empty list") {
         REQUIRE(list.size() == 0);
     }
 
     SECTION("Not empty list") {
-        list.push_back(99);
-        list.push_back(99);
+        list.push_back('1');
+        list.push_back('r');
         REQUIRE(list.size() == 2);
     }
 }
@@ -388,7 +388,7 @@ TEST_CASE("operator!=", "[push_back]") {
         list2.push_back(5);
         list2.push_back(10);
         list2.push_back(8);
-        REQUIRE(!(list != list2));
+        REQUIRE_FALSE(list != list2);
     }
 
     SECTION("Tests same string values") {
@@ -401,7 +401,7 @@ TEST_CASE("operator!=", "[push_back]") {
         list4.push_back("Hello");
         list4.push_back("World");
 
-        REQUIRE(!(list3 != list4));
+        REQUIRE_FALSE(list3 != list4);
     }
 
     SECTION("Tests different string values") {
@@ -435,7 +435,7 @@ TEST_CASE("operator==", "[push_back]") {
     SECTION("Test 1 size lists of different values") {
         list.push_back(5);
         list2.push_back(6);
-        REQUIRE(!(list == list2));
+        REQUIRE_FALSE(list == list2);
     }
 
     SECTION("Tests with first list being smaller") {
@@ -443,7 +443,7 @@ TEST_CASE("operator==", "[push_back]") {
 
         list2.push_back(5);
         list2.push_back(10);
-        REQUIRE(!(list == list2));
+        REQUIRE_FALSE(list == list2);
     }
 
     SECTION("Tests with second list being smaller") {
@@ -453,7 +453,7 @@ TEST_CASE("operator==", "[push_back]") {
 
         list2.push_back(5);
         list2.push_back(10);
-        REQUIRE(!(list == list2));
+        REQUIRE_FALSE(list == list2);
     }
 
     SECTION("Tests same size lists with different values") {
@@ -462,7 +462,7 @@ TEST_CASE("operator==", "[push_back]") {
 
         list2.push_back(5);
         list2.push_back(10);
-        REQUIRE(!(list == list2));
+        REQUIRE_FALSE(list == list2);
     }
 
     SECTION("Tests same size lists with same values") {
@@ -499,7 +499,7 @@ TEST_CASE("operator==", "[push_back]") {
         list4.push_back("Bye");
         list4.push_back("World");
 
-        REQUIRE(!(list3 == list4));
+        REQUIRE_FALSE(list3 == list4);
     }
 }
 
@@ -647,35 +647,35 @@ TEST_CASE("operator<<", "[push_back]") {
 }
 
 TEST_CASE("iterator operator !=", "[begin][push_back]") {
-    LinkedList<int> list;
+    LinkedList<float> list;
 
     SECTION("Comparing same values") {
-        list.push_back(-77);
-        list.push_back(100);
-        REQUIRE(!(list.begin() != list.begin()));
+        list.push_back(-77.0f);
+        list.push_back(100.77f);
+        REQUIRE_FALSE(list.begin() != list.begin());
     }
 
     SECTION("Comparing different values") {
-        list.push_back(-77);
-        list.push_back(100);
+        list.push_back(-77.5f);
+        list.push_back(100.4f);
         REQUIRE(++list.begin() != list.begin());
     }
 }
 
 TEST_CASE("iterator operator ++", "[begin][push_back]") {
-    LinkedList<int> list;
+    LinkedList<double> list;
 
-    list.push_back(-77);
-    list.push_back(100);
+    list.push_back(-77.88);
+    list.push_back(1004567.444444);
     auto itr = list.begin();
     ++itr;
-    REQUIRE(!(++list.begin() != itr));
+    REQUIRE_FALSE(++list.begin() != itr);
 }
 
 TEST_CASE("iterator operator *", "[begin][push_back]") {
-    LinkedList<int> list;
+    LinkedList<std::string> list;
 
-    list.push_back(-77);
-    list.push_back(100);
-    REQUIRE(*list.begin() == -77);
+    list.push_back("I'm");
+    list.push_back("finished!");
+    REQUIRE(*list.begin() == "I'm");
 }
