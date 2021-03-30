@@ -348,7 +348,8 @@ namespace cs126linkedlist {
     template<typename ElementType>
     typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::end()
     const {
-        return nullptr;
+        const_iterator end(nullptr);
+        return end;
     }
 
 }  // namespace cs126linkedlist
