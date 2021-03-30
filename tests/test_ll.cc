@@ -140,12 +140,12 @@ TEST_CASE("Empty", "[push_back][empty]") {
     LinkedList<int> list;
 
     SECTION("Empty list") {
-        REQUIRE(list.empty() == true);
+        REQUIRE(list.empty());
     }
 
     SECTION("Not empty list") {
         list.push_back(99);
-        REQUIRE(list.empty() == false);
+        REQUIRE_FALSE(list.empty());
     }
 }
 
@@ -350,7 +350,7 @@ TEST_CASE("operator!=", "[push_back]") {
     LinkedList<int> list2;
 
     SECTION("Test empty lists") {
-        REQUIRE((list != list2) == false);
+        REQUIRE_FALSE(list != list2);
     }
 
     SECTION("Tests with first list being smaller") {
