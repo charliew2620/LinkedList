@@ -669,6 +669,7 @@ TEST_CASE("iterator operator ++", "[begin][push_back]") {
     list.push_back(1004567.444444);
     auto itr = list.begin();
     ++itr;
+    REQUIRE(list.begin() != itr);
     REQUIRE_FALSE(++list.begin() != itr);
 }
 
@@ -697,10 +698,11 @@ TEST_CASE("const iterator operator ++", "[begin]") {
     LinkedList<double> list(std::vector<double>{77.88, 1004567.444444});
     auto itr = list.begin();
     ++itr;
+    REQUIRE(list.begin() != itr);
     REQUIRE_FALSE(++list.begin() != itr);
 }
 
-TEST_CASE("const iterator operator *", "[begin][push_back]") {
+TEST_CASE("const iterator operator *", "[begin]") {
     LinkedList<std::string> list(std::vector<std::string>{"I'm", "finished!"});
     REQUIRE(*list.begin() == "I'm");
 }
