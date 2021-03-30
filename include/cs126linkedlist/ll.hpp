@@ -282,12 +282,10 @@ namespace cs126linkedlist {
             return true;
         }
 
-        const_iterator iterator = rhs.begin();
-        for (auto itr = this->begin(); itr != this->end(); ++itr) {
+        for (auto itr = this->begin(), iterator = rhs.begin(); itr != this->end(); ++itr, ++iterator) {
             if (*iterator != *itr) {
                 return true;
             }
-            ++iterator;
         }
         return false;
     }
