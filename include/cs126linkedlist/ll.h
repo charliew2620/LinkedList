@@ -20,7 +20,7 @@ namespace cs126linkedlist {
         struct Node {
             Node(ElementType setData);
 
-            ElementType data;
+            ElementType value;
             Node *next;
         };
 

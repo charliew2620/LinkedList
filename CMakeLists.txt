@@ -59,8 +59,8 @@ add_subdirectory(apps)
 # The tests are here.
 add_subdirectory(tests)
 
-# The main data files are here.
-# add_subdirectory(data)
+# The main value files are here.
+# add_subdirectory(value)
 
 # Testing library. Header-only.
 FetchContent_Declare(

@@ -353,8 +353,18 @@ TEST_CASE("operator!=", "[push_back]") {
         REQUIRE((list != list2) == false);
     }
 
-    SECTION("Tests different size lists") {
+    SECTION("Tests with first list being smaller") {
         list.push_back(5);
+
+        list2.push_back(5);
+        list2.push_back(10);
+        REQUIRE(list != list2);
+    }
+
+    SECTION("Tests with second list being smaller") {
+        list.push_back(5);
+        list.push_back(10);
+        list.push_back(20);
 
         list2.push_back(5);
         list2.push_back(10);
@@ -425,11 +435,21 @@ TEST_CASE("operator==", "[push_back]") {
     SECTION("Test 1 size lists of different values") {
         list.push_back(5);
         list2.push_back(6);
-        REQUIRE(list != list2);
+        REQUIRE(!(list == list2));
     }
 
-    SECTION("Tests different size lists") {
+    SECTION("Tests with first list being smaller") {
         list.push_back(5);
+
+        list2.push_back(5);
+        list2.push_back(10);
+        REQUIRE(!(list == list2));
+    }
+
+    SECTION("Tests with second list being smaller") {
+        list.push_back(5);
+        list.push_back(10);
+        list.push_back(20);
 
         list2.push_back(5);
         list2.push_back(10);

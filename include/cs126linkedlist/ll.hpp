@@ -18,7 +18,7 @@ namespace cs126linkedlist {
     template<typename ElementType>
     LinkedList<ElementType>::Node::Node(ElementType setData) {
         next = NULL;
-        data = setData;
+        value = setData;
     }
 
     template<typename ElementType>
@@ -42,7 +42,7 @@ namespace cs126linkedlist {
 // Move constructor
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(LinkedList <ElementType> &&source) noexcept {
-        this->head = source.head;
+        head = source.head;
         source.head = NULL;
     }
 
@@ -113,7 +113,7 @@ namespace cs126linkedlist {
         if (this->empty()) {
             throw std::invalid_argument("list is empty");
         }
-        return head->data;
+        return head->value;
     }
 
     template<typename ElementType>
@@ -125,7 +125,7 @@ namespace cs126linkedlist {
         while (current->next != NULL) {
             current = current->next;
         }
-        return current->data;
+        return current->value;
     }
 
     template<typename ElementType>
@@ -217,6 +217,7 @@ namespace cs126linkedlist {
     template<typename ElementType>
     void LinkedList<ElementType>::RemoveNth(size_t n) {
         Node *current = head;
+
         if (n >= this->size() || n < 0 || this->empty()) {
             return;
 
@@ -230,6 +231,7 @@ namespace cs126linkedlist {
             for (int i = 0; i < n - 1; i++) {
                 current = current->next;
             }
+
             Node *current2 = current->next->next;
             delete current->next;
             current->next = current2;
@@ -265,12 +267,10 @@ namespace cs126linkedlist {
             return false;
         }
 
-        const_iterator iterator = rhs.begin();
-        for (auto itr = this->begin(); itr != this->end(); ++itr) {
+        for (auto itr = this->begin(), iterator = rhs.begin(); itr != this->end(); ++itr, ++iterator) {
             if (*iterator != *itr) {
                 return false;
             }
-            ++iterator;
         }
         return true;
     }
@@ -301,7 +301,7 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     ElementType &LinkedList<ElementType>::iterator::operator*() const {
-        return this->current_->data;
+        return this->current_->value;
     }
 
     template<typename ElementType>
@@ -331,7 +331,7 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     const ElementType &LinkedList<ElementType>::const_iterator::operator*() const {
-        return this->current_->data;
+        return this->current_->value;
     }
 
     template<typename ElementType>
