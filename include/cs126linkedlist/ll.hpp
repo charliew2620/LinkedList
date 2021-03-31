@@ -74,8 +74,8 @@ namespace cs126linkedlist {
             delete head;
             head = source.head;
             source.head = NULL;
-            return *this;
         }
+        return *this;
     }
 
     template<typename ElementType>
@@ -173,12 +173,7 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     bool LinkedList<ElementType>::empty() const {
-        if (head != NULL) {
-            return false;
-
-        } else {
-            return true;
-        }
+        return head == NULL;
     }
 
     template<typename ElementType>
@@ -310,14 +305,12 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     typename LinkedList<ElementType>::iterator LinkedList<ElementType>::begin() {
-        iterator start(head);
-        return start;
+        return iterator(head);
     }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {
-        iterator end(nullptr);
-        return end;
+        return iterator(nullptr);
     }
 
     template<typename ElementType>
@@ -341,15 +334,13 @@ namespace cs126linkedlist {
     template<typename ElementType>
     typename LinkedList<ElementType>::const_iterator
     LinkedList<ElementType>::begin() const {
-        const_iterator start(head);
-        return start;
+        return const_iterator(head);
     }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::end()
     const {
-        const_iterator end(nullptr);
-        return end;
+        return const_iterator(nullptr);
     }
 
 }  // namespace cs126linkedlist
