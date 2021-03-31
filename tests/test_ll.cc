@@ -614,20 +614,36 @@ TEST_CASE("Move Constructor", "[push_back][size]") {
 }
 
 TEST_CASE("Move Operator", "[size][push_back]") {
-    LinkedList<int> *list = new LinkedList<int>();
 
-    list->push_back(177);
-    list->push_back(11);
-    list->push_back(15);
+    SECTION("Empty list") {
+        LinkedList<int> *list = new LinkedList<int>();
 
-    LinkedList<int> list2;
-    list2 = *list;
+        LinkedList<int> list2;
+        list2 = *list;
 
-    LinkedList<int> list3 = std::move(*list);
+        LinkedList<int> list3 = std::move(*list);
 
-    REQUIRE(list->size() == 0);
-    REQUIRE(list3.size() == 3);
-    REQUIRE(list3 == list2);
+        REQUIRE(list->size() == 0);
+        REQUIRE(list3.size() == 0);
+        REQUIRE(list3 == list2);
+    }
+
+    SECTION("Tests non-empty list") {
+        LinkedList<int> *list = new LinkedList<int>();
+
+        list->push_back(177);
+        list->push_back(11);
+        list->push_back(15);
+
+        LinkedList<int> list2;
+        list2 = *list;
+
+        LinkedList<int> list3 = std::move(*list);
+
+        REQUIRE(list->size() == 0);
+        REQUIRE(list3.size() == 3);
+        REQUIRE(list3 == list2);
+    }
 }
 
 TEST_CASE("operator<<", "[push_back]") {
