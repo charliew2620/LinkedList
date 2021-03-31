@@ -71,7 +71,7 @@ namespace cs126linkedlist {
     LinkedList <ElementType> &LinkedList<ElementType>::operator=(
             LinkedList <ElementType> &&source) noexcept {
         if (this != source) {
-            delete head;
+            this->clear();
             head = source.head;
             source.head = NULL;
         }
